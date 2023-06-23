@@ -28,6 +28,7 @@ class APICaller
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
+            
             if error == nil,
                let safeData = data,
                let resultData = try? JSONDecoder().decode(ExchangeRateModel.self, from: safeData)

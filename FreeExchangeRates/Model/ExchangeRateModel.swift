@@ -13,5 +13,5 @@ struct ExchangeRateModel: Codable
     let timestamp: Int
     let base: String
     let date: String
-//    let rates
+    let rates: [String:Double]
 }
