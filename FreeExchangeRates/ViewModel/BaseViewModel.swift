@@ -9,13 +9,25 @@ import Foundation
 
 class BaseViewModel
 {
+    var isLoadingLatestRates: Observable<Bool> = Observable(false)
+    var exchangeData: Observable<ExchangeRateModel> = Observable(nil)
+    
     func getLatestRates()
     {
-        APICaller.getLatestRates { result in
+        if isLoadingLatestRates.value ?? true
+        {
+            return
+        }
+        
+        isLoadingLatestRates.value = true
+        
+        APICaller.getLatestRates { [weak self] result in
+            self?.isLoadingLatestRates.value = false
+            
             switch result
             {
             case .success(let data):
-                print(data)
+                self?.exchangeData.value = data
                 
             case .failure(let error):
                 print(error)

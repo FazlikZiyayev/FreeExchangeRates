@@ -17,6 +17,7 @@
 		F433C4792A45AE80003874D9 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C4782A45AE80003874D9 /* NetworkConstant.swift */; };
 		F433C47C2A45B1B1003874D9 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C47B2A45B1B1003874D9 /* APICaller.swift */; };
 		F433C47E2A45B295003874D9 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */; };
+		F433C4802A463324003874D9 /* BaseView-UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C47F2A463324003874D9 /* BaseView-UI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		F433C4782A45AE80003874D9 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
 		F433C47B2A45B1B1003874D9 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
+		F433C47F2A463324003874D9 /* BaseView-UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseView-UI.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,6 @@
 				84A4694FA3438E4EF74FD55A /* Pods-FreeExchangeRates.debug.xcconfig */,
 				7C71F74DC49CDE04E0B3B400 /* Pods-FreeExchangeRates.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -112,6 +113,7 @@
 		F433C46B2A459915003874D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F433C47F2A463324003874D9 /* BaseView-UI.swift */,
 				F433C4572A44EDE6003874D9 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -300,6 +302,7 @@
 				F433C44D2A44EDE3003874D9 /* AppDelegate.swift in Sources */,
 				F433C47E2A45B295003874D9 /* ExchangeRateModel.swift in Sources */,
 				F433C46A2A45968F003874D9 /* BaseViewController.swift in Sources */,
+				F433C4802A463324003874D9 /* BaseView-UI.swift in Sources */,
 				F433C4792A45AE80003874D9 /* NetworkConstant.swift in Sources */,
 				F433C4742A45A13A003874D9 /* BaseViewModel.swift in Sources */,
 			);

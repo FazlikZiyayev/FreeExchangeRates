@@ -6,18 +6,29 @@
 //
 
 import UIKit
+import SnapKit
 
 class BaseViewController: UIViewController
 {
     let baseViewModel = BaseViewModel()
     
     var label = UILabel()
+    var activityIndicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.label = self.create_label()
+        self.bind_baseViewModel()
+        self.bind_exchangeData()
+    }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.setup_view()
-        self.setup_label()
     }
     
     
@@ -31,27 +42,22 @@ class BaseViewController: UIViewController
     
     
     
-    func setup_view()
+    func bind_baseViewModel()
     {
-        self.view.backgroundColor = .white
-        self.title = "Hello world!"
+        baseViewModel.isLoadingLatestRates.bind { [weak self] isLoading in
+            
+        }
     }
     
     
     
-    func setup_label()
+    func bind_exchangeData()
     {
-        let screenSize = UIScreen.main.bounds
-        
-        let label = UILabel(frame: CGRect(x: screenSize.width / 2 - 30,
-                                          y: screenSize.height / 2,
-                                          width: 100,
-                                          height: 30))
-        label.backgroundColor = .gray
-        label.text = "Bye world...!"
-        label.font = .boldSystemFont(ofSize: 16)
-        self.view.addSubview(label)
-        
-        self.label = label
+        baseViewModel.exchangeData.bind { [weak self] exchangeDate in
+            guard let self = self,
+                  let safeExchangeDate = exchangeDate else {return}
+            
+            self.label.text = safeExchangeDate.date
+        }
     }
 }
