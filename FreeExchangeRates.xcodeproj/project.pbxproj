@@ -52,10 +52,14 @@
 		F433C44B2A44EDE2003874D9 /* FreeExchangeRates */ = {
 			isa = PBXGroup;
 			children = (
-				F433C4682A459676003874D9 /* BaseViewController */,
-				F433C44C2A44EDE3003874D9 /* AppDelegate.swift */,
-				F433C4552A44EDE6003874D9 /* Assets.xcassets */,
-				F433C4572A44EDE6003874D9 /* LaunchScreen.storyboard */,
+				F433C4722A459A25003874D9 /* AppDelegate */,
+				F433C4712A4599A6003874D9 /* Networking */,
+				F433C46E2A459945003874D9 /* Model */,
+				F433C46D2A459924003874D9 /* Controllers */,
+				F433C46C2A45991B003874D9 /* ViewModel */,
+				F433C46B2A459915003874D9 /* View */,
+				F433C4702A45997C003874D9 /* Extensions */,
+				F433C46F2A459966003874D9 /* Recources */,
 				F433C45A2A44EDE6003874D9 /* Info.plist */,
 			);
 			path = FreeExchangeRates;
@@ -67,6 +71,66 @@
 				F433C4692A45968F003874D9 /* BaseViewController.swift */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		F433C46B2A459915003874D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F433C4572A44EDE6003874D9 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F433C46C2A45991B003874D9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F433C46D2A459924003874D9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F433C4682A459676003874D9 /* BaseViewController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F433C46E2A459945003874D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F433C46F2A459966003874D9 /* Recources */ = {
+			isa = PBXGroup;
+			children = (
+				F433C4552A44EDE6003874D9 /* Assets.xcassets */,
+			);
+			path = Recources;
+			sourceTree = "<group>";
+		};
+		F433C4702A45997C003874D9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F433C4712A4599A6003874D9 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		F433C4722A459A25003874D9 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				F433C44C2A44EDE3003874D9 /* AppDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
