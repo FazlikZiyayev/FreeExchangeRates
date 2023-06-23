@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BaseViewController.swift
 //  FreeExchangeRates
 //
 //  Created by Fazlik Ziyaev on 23/06/23.
@@ -7,14 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = .green
+
+        self.view.backgroundColor = .red
     }
-
-
 }
-
