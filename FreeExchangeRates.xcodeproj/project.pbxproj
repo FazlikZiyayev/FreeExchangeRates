@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CE4ABA01ABC70DCF7114FC9 /* Pods_FreeExchangeRates.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4F6D02CBC285A95D514AE5 /* Pods_FreeExchangeRates.framework */; };
 		F433C44D2A44EDE3003874D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C44C2A44EDE3003874D9 /* AppDelegate.swift */; };
 		F433C4562A44EDE6003874D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F433C4552A44EDE6003874D9 /* Assets.xcassets */; };
 		F433C4592A44EDE6003874D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F433C4572A44EDE6003874D9 /* LaunchScreen.storyboard */; };
@@ -19,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A4F6D02CBC285A95D514AE5 /* Pods_FreeExchangeRates.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FreeExchangeRates.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C71F74DC49CDE04E0B3B400 /* Pods-FreeExchangeRates.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeExchangeRates.release.xcconfig"; path = "Target Support Files/Pods-FreeExchangeRates/Pods-FreeExchangeRates.release.xcconfig"; sourceTree = "<group>"; };
+		84A4694FA3438E4EF74FD55A /* Pods-FreeExchangeRates.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FreeExchangeRates.debug.xcconfig"; path = "Target Support Files/Pods-FreeExchangeRates/Pods-FreeExchangeRates.debug.xcconfig"; sourceTree = "<group>"; };
 		F433C4492A44EDE2003874D9 /* FreeExchangeRates.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeExchangeRates.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F433C44C2A44EDE3003874D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F433C4552A44EDE6003874D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -37,17 +41,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CE4ABA01ABC70DCF7114FC9 /* Pods_FreeExchangeRates.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B984D9EB44062F349E8FEA2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A4F6D02CBC285A95D514AE5 /* Pods_FreeExchangeRates.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A9564B4754411B56CBBC8C06 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				84A4694FA3438E4EF74FD55A /* Pods-FreeExchangeRates.debug.xcconfig */,
+				7C71F74DC49CDE04E0B3B400 /* Pods-FreeExchangeRates.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		F433C4402A44EDE2003874D9 = {
 			isa = PBXGroup;
 			children = (
 				F433C44B2A44EDE2003874D9 /* FreeExchangeRates */,
 				F433C44A2A44EDE2003874D9 /* Products */,
+				A9564B4754411B56CBBC8C06 /* Pods */,
+				8B984D9EB44062F349E8FEA2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,9 +188,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F433C45D2A44EDE6003874D9 /* Build configuration list for PBXNativeTarget "FreeExchangeRates" */;
 			buildPhases = (
+				703F239B013D12D2A6A6CD1F /* [CP] Check Pods Manifest.lock */,
 				F433C4452A44EDE2003874D9 /* Sources */,
 				F433C4462A44EDE2003874D9 /* Frameworks */,
 				F433C4472A44EDE2003874D9 /* Resources */,
+				2FD489CBD8BDEA224657C8D1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -220,6 +247,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FD489CBD8BDEA224657C8D1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeExchangeRates/Pods-FreeExchangeRates-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeExchangeRates/Pods-FreeExchangeRates-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FreeExchangeRates/Pods-FreeExchangeRates-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		703F239B013D12D2A6A6CD1F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FreeExchangeRates-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F433C4452A44EDE2003874D9 /* Sources */ = {
@@ -366,6 +435,7 @@
 		};
 		F433C45E2A44EDE6003874D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84A4694FA3438E4EF74FD55A /* Pods-FreeExchangeRates.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -397,6 +467,7 @@
 		};
 		F433C45F2A44EDE6003874D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C71F74DC49CDE04E0B3B400 /* Pods-FreeExchangeRates.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
