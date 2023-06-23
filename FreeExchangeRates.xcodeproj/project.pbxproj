@@ -11,6 +11,11 @@
 		F433C4562A44EDE6003874D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F433C4552A44EDE6003874D9 /* Assets.xcassets */; };
 		F433C4592A44EDE6003874D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F433C4572A44EDE6003874D9 /* LaunchScreen.storyboard */; };
 		F433C46A2A45968F003874D9 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C4692A45968F003874D9 /* BaseViewController.swift */; };
+		F433C4742A45A13A003874D9 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C4732A45A13A003874D9 /* BaseViewModel.swift */; };
+		F433C4772A45ACB3003874D9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C4762A45ACB3003874D9 /* Observable.swift */; };
+		F433C4792A45AE80003874D9 /* NetworkConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C4782A45AE80003874D9 /* NetworkConstant.swift */; };
+		F433C47C2A45B1B1003874D9 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C47B2A45B1B1003874D9 /* APICaller.swift */; };
+		F433C47E2A45B295003874D9 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,11 @@
 		F433C4582A44EDE6003874D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F433C45A2A44EDE6003874D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F433C4692A45968F003874D9 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		F433C4732A45A13A003874D9 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		F433C4762A45ACB3003874D9 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		F433C4782A45AE80003874D9 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
+		F433C47B2A45B1B1003874D9 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +64,7 @@
 			children = (
 				F433C4722A459A25003874D9 /* AppDelegate */,
 				F433C4712A4599A6003874D9 /* Networking */,
+				F433C4752A45AC9B003874D9 /* Classes */,
 				F433C46E2A459945003874D9 /* Model */,
 				F433C46D2A459924003874D9 /* Controllers */,
 				F433C46C2A45991B003874D9 /* ViewModel */,
@@ -84,6 +95,7 @@
 		F433C46C2A45991B003874D9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				F433C4732A45A13A003874D9 /* BaseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -99,6 +111,7 @@
 		F433C46E2A459945003874D9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -121,6 +134,8 @@
 		F433C4712A4599A6003874D9 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F433C4782A45AE80003874D9 /* NetworkConstant.swift */,
+				F433C47B2A45B1B1003874D9 /* APICaller.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -131,6 +146,14 @@
 				F433C44C2A44EDE3003874D9 /* AppDelegate.swift */,
 			);
 			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		F433C4752A45AC9B003874D9 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F433C4762A45ACB3003874D9 /* Observable.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +226,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F433C4772A45ACB3003874D9 /* Observable.swift in Sources */,
+				F433C47C2A45B1B1003874D9 /* APICaller.swift in Sources */,
 				F433C44D2A44EDE3003874D9 /* AppDelegate.swift in Sources */,
+				F433C47E2A45B295003874D9 /* ExchangeRateModel.swift in Sources */,
 				F433C46A2A45968F003874D9 /* BaseViewController.swift in Sources */,
+				F433C4792A45AE80003874D9 /* NetworkConstant.swift in Sources */,
+				F433C4742A45A13A003874D9 /* BaseViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
