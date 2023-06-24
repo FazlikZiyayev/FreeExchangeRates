@@ -18,19 +18,13 @@ class BaseViewController: UIViewController
     var baseAmountTF = UITextField()
     
     var baseCurrencyLabel = UILabel()
-    var baseCurrencyFlag = UIImageView()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.label = self.create_label()
-        self.baseAmountLabel = self.create_amountLabel()
-        self.baseAmountContainer = self.create_baseAmountContainer()
-        self.baseAmountTF = self.create_baseAmountTF()
-        self.baseCurrencyLabel = self.create_baseCurrencyLabel()
-        self.bind_baseViewModel()
-        self.bind_exchangeData()
+        self.create_uiComponents()
+        self.bind_elements()
     }
     
     
@@ -54,15 +48,19 @@ class BaseViewController: UIViewController
     
     @objc func baseAmountTFChanged(_ tf: UITextField)
     {
-        print(tf.text)
+        
     }
-    
-    
-    
-    func bind_baseViewModel()
+}
+
+
+
+// for binding elements
+extension BaseViewController
+{
+    func bind_isLoadingLastestRatest()
     {
         baseViewModel.isLoadingLatestRates.bind { [weak self] isLoading in
-            
+            print(isLoading ?? false)
         }
     }
     
@@ -73,23 +71,8 @@ class BaseViewController: UIViewController
         baseViewModel.exchangeData.bind { [weak self] exchangeDate in
             guard let self = self,
                   let safeExchangeDate = exchangeDate else {return}
-            
-//            self.label.text = safeExchangeDate.date
-            self.baseCurrencyLabel.text = self.countryFlag(countryCode: "DE") + " EUR"
+            self.label.text = safeExchangeDate.date
         }
-    }
-    
-    
-    
-    func countryFlag(countryCode: String) -> String {
-        let base = 127397
-        var tempScalarView = String.UnicodeScalarView()
-        for i in countryCode.utf16 {
-            if let scalar = UnicodeScalar(base + Int(i)) {
-                tempScalarView.append(scalar)
-            }
-        }
-        return String(tempScalarView)
     }
 }
 
