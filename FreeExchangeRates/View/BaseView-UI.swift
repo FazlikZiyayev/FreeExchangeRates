@@ -9,6 +9,21 @@ import UIKit
 
 extension BaseViewController
 {
+    func create_uiComponents()
+    {
+        self.label = self.create_label()
+        
+        self.baseAmountLabel = self.create_baseAmountLabel()
+        self.baseAmountContainer = self.create_baseAmountContainer()
+        self.baseAmountTF = self.create_baseAmountTF()
+        self.baseCurrencyLabel = self.create_baseCurrencyLabel()
+        
+        self.targetAmountLabel = self.create_targetAmounLabel()
+        self.targetAmountContainer = self.create_targetAmountContainer()
+        self.targetCurrencyLabel = self.create_targetCurrencyLabel()
+    }
+    
+    
     func setup_view()
     {
         self.title = "Currency Converter"
@@ -30,13 +45,13 @@ extension BaseViewController
     }
     
     
-    
-    func create_amountLabel() -> UILabel
+    func create_baseAmountLabel() -> UILabel
     {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Amount"
         label.font = .boldSystemFont(ofSize: 17)
+        label.textColor = .black.withAlphaComponent(0.8)
         self.view.addSubview(label)
         label.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(100)
@@ -46,7 +61,6 @@ extension BaseViewController
         
         return label
     }
-    
     
     
     func create_baseAmountContainer() -> UIView
@@ -67,7 +81,6 @@ extension BaseViewController
     }
     
     
-    
     func create_baseAmountTF() -> UITextField
     {
         let tf = UITextField()
@@ -86,7 +99,6 @@ extension BaseViewController
     }
     
     
-    
     func create_baseCurrencyLabel() -> UILabel
     {
         let label = UILabel()
@@ -103,8 +115,6 @@ extension BaseViewController
     }
     
     
-    
-    
     func create_baseCurrencyFlag() -> UIImageView
     {
         let imageView = UIImageView()
@@ -119,22 +129,55 @@ extension BaseViewController
     }
     
     
-    
-    func create_uiComponents()
+    func create_targetAmounLabel() -> UILabel
     {
-        self.label = self.create_label()
-        self.baseAmountLabel = self.create_amountLabel()
-        self.baseAmountContainer = self.create_baseAmountContainer()
-        self.baseAmountTF = self.create_baseAmountTF()
-        self.baseCurrencyLabel = self.create_baseCurrencyLabel()
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.text = "Target currency"
+        label.font = .boldSystemFont(ofSize: 17)
+        label.textColor = .black.withAlphaComponent(0.8)
+        self.view.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.top.equalTo(self.baseAmountContainer.snp.bottom).offset(100)
+            make.left.equalToSuperview().offset(16)
+        }
+        
+        
+        return label
     }
     
     
-    
-    func bind_elements()
+    func create_targetAmountContainer() -> UIView
     {
-        self.bind_isLoadingLastestRatest()
-        self.bind_exchangeData()
+        let container = UIView()
+        container.layer.borderWidth = 2.0
+        container.layer.borderColor = UIColor.black.cgColor
+        container.layer.cornerRadius = 4
+        self.view.addSubview(container)
+        container.snp.makeConstraints { make in
+            make.top.equalTo(self.targetAmountLabel.snp.bottom).offset(8)
+            make.left.right.equalToSuperview().inset(16)
+            make.height.equalTo(50)
+        }
+        
+        
+        return container
+    }
+    
+    
+    func create_targetCurrencyLabel() -> UILabel
+    {
+        let label = UILabel()
+        label.text = "Select currency"
+        label.font = .boldSystemFont(ofSize: 20)
+        self.targetAmountContainer.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        
+        
+        return label
     }
     
     

@@ -13,11 +13,15 @@ class BaseViewController: UIViewController
     let baseViewModel = BaseViewModel()
     
     var label = UILabel()
+    
     var baseAmountLabel = UILabel()
     var baseAmountContainer = UIView()
     var baseAmountTF = UITextField()
-    
     var baseCurrencyLabel = UILabel()
+    
+    var targetAmountLabel = UILabel()
+    var targetAmountContainer = UIView()
+    var targetCurrencyLabel = UILabel()
     
     
     override func viewDidLoad() {
@@ -57,11 +61,18 @@ class BaseViewController: UIViewController
 // for binding elements
 extension BaseViewController
 {
+    func bind_elements()
+    {
+        self.bind_isLoadingLastestRatest()
+        self.bind_exchangeData()
+    }
+    
+    
+    
     func bind_isLoadingLastestRatest()
     {
-        baseViewModel.isLoadingLatestRates.bind { [weak self] isLoading in
-            print(isLoading ?? false)
-        }
+//        baseViewModel.isLoadingLatestRates.bind { [weak self] isLoading in
+//        }
     }
     
     
