@@ -12,6 +12,10 @@ class BaseViewModel
     var isLoadingLatestRates: Observable<Bool> = Observable(false)
     var exchangeData: Observable<ExchangeRateModel> = Observable(nil)
     
+    
+    var convertedResult: Observable<String> = Observable(nil)
+
+
     func getLatestRates()
     {
         if isLoadingLatestRates.value ?? true
