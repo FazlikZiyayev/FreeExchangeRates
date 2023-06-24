@@ -13,20 +13,21 @@ class BaseViewController: UIViewController
     let baseViewModel = BaseViewModel()
     
     var label = UILabel()
-    var amountLabel = UILabel()
-    var amountContainer = UIView()
-    var amountTF = UITextField()
+    var baseAmountLabel = UILabel()
+    var baseAmountContainer = UIView()
+    var baseAmountTF = UITextField()
     
     var baseCurrencyLabel = UILabel()
     var baseCurrencyFlag = UIImageView()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.label = self.create_label()
-        self.amountLabel = self.create_amountLabel()
-        self.amountContainer = self.create_amountContainer()
-        self.amountTF = self.create_amountTf()
+        self.baseAmountLabel = self.create_amountLabel()
+        self.baseAmountContainer = self.create_baseAmountContainer()
+        self.baseAmountTF = self.create_baseAmountTF()
         self.baseCurrencyLabel = self.create_baseCurrencyLabel()
         self.bind_baseViewModel()
         self.bind_exchangeData()
@@ -47,6 +48,13 @@ class BaseViewController: UIViewController
         super.viewDidAppear(animated)
         
         self.baseViewModel.getLatestRates()
+    }
+    
+    
+    
+    @objc func baseAmountTFChanged(_ tf: UITextField)
+    {
+        print(tf.text)
     }
     
     
@@ -82,5 +90,15 @@ class BaseViewController: UIViewController
             }
         }
         return String(tempScalarView)
+    }
+}
+
+
+
+extension BaseViewController: UITextFieldDelegate
+{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        return true
     }
 }

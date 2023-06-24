@@ -38,4 +38,13 @@ class BaseViewModel
             }
         }
     }
+    
+    
+    
+    func convert(from: String,
+                 to: String,
+                 amount: String)
+    {
+        
+    }
 }

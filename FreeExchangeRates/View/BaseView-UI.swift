@@ -49,7 +49,7 @@ extension BaseViewController
     
     
     
-    func create_amountContainer() -> UIView
+    func create_baseAmountContainer() -> UIView
     {
         let container = UIView()
         container.layer.borderWidth = 2.0
@@ -57,7 +57,7 @@ extension BaseViewController
         container.layer.cornerRadius = 4
         self.view.addSubview(container)
         container.snp.makeConstraints { make in
-            make.top.equalTo(self.amountLabel.snp.bottom).offset(8)
+            make.top.equalTo(self.baseAmountLabel.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(50)
         }
@@ -68,13 +68,15 @@ extension BaseViewController
     
     
     
-    func create_amountTf() -> UITextField
+    func create_baseAmountTF() -> UITextField
     {
         let tf = UITextField()
+        tf.delegate = self
         tf.font = .boldSystemFont(ofSize: 20)
         tf.autocorrectionType = .no
         tf.keyboardType = .numberPad
-        self.amountContainer.addSubview(tf)
+        tf.addTarget(self, action: #selector(baseAmountTFChanged), for: .editingChanged)
+        self.baseAmountContainer.addSubview(tf)
         tf.snp.makeConstraints { make in
             make.top.bottom.right.equalToSuperview()
             make.left.equalToSuperview().offset(8)
@@ -90,7 +92,7 @@ extension BaseViewController
         let label = UILabel()
         label.text = "EUR"
         label.font = .boldSystemFont(ofSize: 20)
-        self.amountContainer.addSubview(label)
+        self.baseAmountContainer.addSubview(label)
         label.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.right.equalToSuperview().offset(-16)
@@ -107,7 +109,7 @@ extension BaseViewController
     {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "")
-        self.amountContainer.addSubview(imageView)
+        self.baseAmountContainer.addSubview(imageView)
         imageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
         }
