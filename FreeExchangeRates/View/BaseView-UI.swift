@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KeyboardLayoutGuide
 
 extension BaseViewController
 {
@@ -21,6 +22,8 @@ extension BaseViewController
         self.targetCurrencyLabel = self.create_targetCurrencyLabel()
         
         self.convertedResultLabel = self.create_label()
+        
+        self.submitBtn = self.create_submitBtn()
     }
     
     
@@ -190,6 +193,29 @@ extension BaseViewController
         
         
         return label
+    }
+    
+    
+    func create_submitBtn() -> UIButton
+    {
+        let btn = UIButton()
+        btn.layer.cornerRadius = 8
+        btn.layer.borderWidth = 2.0
+        btn.layer.borderColor = UIColor.black.cgColor
+        btn.setTitle("Submit", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        btn.addTarget(self, action: #selector(submitBtnPressed), for: .touchUpInside)
+        self.view.addSubview(btn)
+        btn.snp.makeConstraints { make in
+            make.width.equalTo(120)
+            make.height.equalTo(50)
+            make.bottom.equalTo(self.view.keyboardLayoutGuide.snp.top).offset(-20)
+            make.centerX.equalToSuperview()
+        }
+        
+        
+        return btn
     }
     
     

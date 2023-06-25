@@ -29,6 +29,8 @@ class BaseViewController: UIViewController
     
     var convertedResultLabel = UILabel()
     
+    var submitBtn = UIButton()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +78,13 @@ class BaseViewController: UIViewController
     @objc func selectTargetPressed()
     {
         self.openTargetPickerView()
+    }
+    
+    
+    
+    @objc func submitBtnPressed()
+    {
+        
     }
 }
 
