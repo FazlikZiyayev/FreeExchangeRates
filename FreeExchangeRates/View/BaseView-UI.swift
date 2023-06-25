@@ -11,8 +11,6 @@ extension BaseViewController
 {
     func create_uiComponents()
     {
-        self.label = self.create_label()
-        
         self.baseAmountLabel = self.create_baseAmountLabel()
         self.baseAmountContainer = self.create_baseAmountContainer()
         self.baseAmountTF = self.create_baseAmountTF()
@@ -21,6 +19,8 @@ extension BaseViewController
         self.targetAmountLabel = self.create_targetAmounLabel()
         self.targetAmountContainer = self.create_targetAmountContainer()
         self.targetCurrencyLabel = self.create_targetCurrencyLabel()
+        
+        self.convertedResultLabel = self.create_label()
     }
     
     
@@ -35,9 +35,11 @@ extension BaseViewController
     {
         let label = UILabel()
         label.numberOfLines = 0
+        label.textColor = UIColor(hexString: "#228B22")
         self.view.addSubview(label)
         label.snp.makeConstraints { make in
-            make.centerY.centerX.equalToSuperview()
+            make.top.equalTo(self.targetAmountContainer.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(16)
         }
         
         

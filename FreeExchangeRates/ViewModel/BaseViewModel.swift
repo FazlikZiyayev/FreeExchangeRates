@@ -11,7 +11,7 @@ class BaseViewModel
 {
     var isLoadingLatestRates: Observable<Bool> = Observable(false)
     var exchangeData: Observable<ExchangeRateModel> = Observable(nil)
-        
+
     var convertedResult: Observable<String> = Observable(nil)
 
 
@@ -44,6 +44,13 @@ class BaseViewModel
                  to: String,
                  amount: String)
     {
-        
+        if let safeExchangeData = self.exchangeData.value,
+           let parsedAmount = Double(amount.trimmingCharacters(in: [" "]))
+        {
+            if let safeSingleCurrency = safeExchangeData.rates[to]
+            {
+                self.convertedResult.value = "\(safeSingleCurrency * parsedAmount)"
+            }
+        }
     }
 }

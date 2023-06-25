@@ -12,8 +12,6 @@ class BaseViewController: UIViewController
 {
     let baseViewModel = BaseViewModel()
     
-    var label = UILabel()
-    
     var baseAmountLabel = UILabel()
     var baseAmountContainer = UIView()
     var baseAmountTF = UITextField()
@@ -22,6 +20,8 @@ class BaseViewController: UIViewController
     var targetAmountLabel = UILabel()
     var targetAmountContainer = UIView()
     var targetCurrencyLabel = UILabel()
+    
+    var convertedResultLabel = UILabel()
     
     
     override func viewDidLoad() {
@@ -52,7 +52,17 @@ class BaseViewController: UIViewController
     
     @objc func baseAmountTFChanged(_ tf: UITextField)
     {
-        
+//        self.baseViewModel.convert(from: "EUR", to: "UZS", amount: tf.text ?? "")
+        if let safeText = tf.text,
+           safeText.count > 0
+        {
+            self.convertedResultLabel.isHidden = false
+            self.baseViewModel.convert(from: "EUR", to: "USD", amount: safeText)
+        }
+        else
+        {
+            self.convertedResultLabel.isHidden = true
+        }
     }
 }
 
@@ -65,6 +75,7 @@ extension BaseViewController
     {
         self.bind_isLoadingLastestRatest()
         self.bind_exchangeData()
+        self.bind_convertedResult()
     }
     
     
@@ -81,8 +92,21 @@ extension BaseViewController
     {
         baseViewModel.exchangeData.bind { [weak self] exchangeDate in
             guard let self = self,
-                  let safeExchangeDate = exchangeDate else {return}
-            self.label.text = safeExchangeDate.date
+                  let _ = exchangeDate else {return}
+            self.baseAmountTF.becomeFirstResponder()
+        }
+    }
+    
+    
+    
+    func bind_convertedResult()
+    {
+        baseViewModel.convertedResult.bind { [weak self] convertedResult in
+            guard let self = self,
+            let safeConvertedResult = convertedResult,
+            let safeConvertedResultAsDouble = Double(safeConvertedResult) else { return }
+            
+            self.convertedResultLabel.text = String(format: "%.2f", safeConvertedResultAsDouble)
         }
     }
 }
