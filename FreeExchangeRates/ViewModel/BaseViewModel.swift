@@ -14,6 +14,7 @@ class BaseViewModel
     
     var exchangeData: Observable<ExchangeRateModel> = Observable(nil)
     var supportedSymbols: Observable<SupportedSymbols> = Observable(nil)
+    var sortedSupportedSymbols: Observable<[String]> = Observable(nil)
 
     var baseCurrency: Observable<String> = Observable("EUR")
     var targetCurrency: Observable<String> = Observable(nil)
@@ -55,21 +56,37 @@ class BaseViewModel
     }
     
     
-    
-    func getSupportedSymbolKeyByIndex(index: Int) -> String?
+    func getNumberOfSortedSupportedSymbols() -> Int?
     {
-        if let safeSupportedSymbols = self.supportedSymbols.value?.symbols
+        return self.sortedSupportedSymbols.value?.count
+    }
+    
+    
+//    func getSupportedSymbolKeyByIndex(index: Int) -> String?
+//    {
+//        if let safeSupportedSymbols = self.supportedSymbols.value?.symbols
+//        {
+//            let index = safeSupportedSymbols.index(safeSupportedSymbols.startIndex, offsetBy: index)
+//            let value = safeSupportedSymbols.keys[index]
+//
+//            return value
+//        }
+//
+//        return nil
+//    }
+
+    
+    func getSortedSupportedSymbolKeyByIndex(index: Int) -> String?
+    {
+        if let safeSortedSupportedSymbols = self.sortedSupportedSymbols.value,
+           index < safeSortedSupportedSymbols.count
         {
-            let index = safeSupportedSymbols.index(safeSupportedSymbols.startIndex, offsetBy: index)
-            let value = safeSupportedSymbols.keys[index]
-            
-            return value
+            return safeSortedSupportedSymbols[index]
         }
         
         return nil
     }
     
-
     
     func getLatestRates()
     {
@@ -133,6 +150,18 @@ class BaseViewModel
             }
         }
     }
+    
+    
+    
+    func sortSupportedSymbolsByKey()
+    {
+        if let safeSupportedSymbols = self.supportedSymbols.value?.symbols
+        {
+            let sortedDictArray = Array(safeSupportedSymbols.sorted { $0.key < $1.key }.map({ $0.key }))
+            self.sortedSupportedSymbols.value = sortedDictArray
+        }
+    }
+    
     
     
     func countryFlag(countryCode: String) -> String {

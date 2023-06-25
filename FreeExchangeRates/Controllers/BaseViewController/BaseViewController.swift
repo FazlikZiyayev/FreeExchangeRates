@@ -15,15 +15,6 @@ class BaseViewController: UIViewController
     let screenWidth = UIScreen.main.bounds.width - 10
     let screenHeight = (UIScreen.main.bounds.height / 100) * 30
     var selectedRow = 0
-    var backGroundColours : KeyValuePairs =
-            [
-                "WHITE" : UIColor.white,
-                "GRAY" : UIColor.lightGray,
-                "BLUE" : UIColor.blue,
-                "YELLOW" : UIColor.yellow,
-                "RED" : UIColor.red,
-                "GREEN" : UIColor.green
-            ]
     
     var baseAmountLabel = UILabel()
     var baseAmountContainer = UIView()
@@ -98,6 +89,7 @@ extension BaseViewController
         self.bind_isLoadingLastestRatest()
         self.bind_exchangeData()
         self.bind_supportedSymbols()
+        self.bind_sortedSupportedSymbols()
         self.bind_baseCurrency()
         self.bind_targetCurrency()
         self.bind_convertedResult()
@@ -107,8 +99,7 @@ extension BaseViewController
     
     func bind_isLoadingLastestRatest()
     {
-//        baseViewModel.isLoadingLatestRates.bind { [weak self] isLoading in
-//        }
+
     }
     
     
@@ -131,7 +122,18 @@ extension BaseViewController
             guard let self = self,
                   let _ = supportedSymbols else {return}
             
+            self.baseViewModel.sortSupportedSymbolsByKey()
             self.targetAmountContainer.isUserInteractionEnabled = true
+        }
+    }
+    
+    
+    func bind_sortedSupportedSymbols()
+    {
+        baseViewModel.sortedSupportedSymbols.bind { [weak self] sortedSymbols in
+            guard let self = self,
+                  let _ = sortedSymbols else {return}
+            
             self.targetPickerView.reloadAllComponents()
         }
     }
@@ -197,7 +199,7 @@ extension BaseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
         {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 30))
-            label.text = self.baseViewModel.getSupportedSymbolKeyByIndex(index: row)
+            label.text = self.baseViewModel.getSortedSupportedSymbolKeyByIndex(index: row)
             label.sizeToFit()
             return label
         }
@@ -209,7 +211,7 @@ extension BaseViewController: UIPickerViewDelegate, UIPickerViewDataSource
         
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
         {
-            return self.baseViewModel.getNumberOfSupportedSymbols() ?? 0
+            return self.baseViewModel.getNumberOfSortedSupportedSymbols() ?? 0
         }
         
         func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat

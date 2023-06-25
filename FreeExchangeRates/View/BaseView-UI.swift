@@ -217,7 +217,7 @@ extension BaseViewController
         }))
         
         alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { [weak self] (UIAlertAction) in
-            let key = self?.baseViewModel.getSupportedSymbolKeyByIndex(index: pickerView.selectedRow(inComponent: 0))
+            let key = self?.baseViewModel.getSortedSupportedSymbolKeyByIndex(index: pickerView.selectedRow(inComponent: 0))
             self?.baseViewModel.setTargetCurrency(targetCurrency: key)
         }))
         
