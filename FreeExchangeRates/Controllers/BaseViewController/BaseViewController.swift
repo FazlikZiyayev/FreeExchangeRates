@@ -61,16 +61,7 @@ class BaseViewController: UIViewController
     
     @objc func baseAmountTFChanged(_ tf: UITextField)
     {
-        if let safeText = tf.text,
-           safeText.count > 0
-        {
-            self.convertedResultLabel.isHidden = false
-            self.baseViewModel.convert(amount: safeText)
-        }
-        else
-        {
-            self.convertedResultLabel.isHidden = true
-        }
+        self.logicForConvertingCurrency()
     }
     
     
@@ -95,7 +86,6 @@ extension BaseViewController
 {
     func bind_elements()
     {
-        self.bind_isLoadingLastestRatest()
         self.bind_exchangeData()
         self.bind_supportedSymbols()
         self.bind_sortedSupportedSymbols()
@@ -105,24 +95,14 @@ extension BaseViewController
     }
     
     
-    
-    func bind_isLoadingLastestRatest()
-    {
-
-    }
-    
-    
-    
     func bind_exchangeData()
     {
         baseViewModel.exchangeData.bind { [weak self] exchangeDate in
             guard let self = self,
                   let _ = exchangeDate else {return}
             self.baseAmountTF.becomeFirstResponder()
-            
         }
     }
-    
     
     
     func bind_supportedSymbols()
@@ -169,6 +149,7 @@ extension BaseViewController
             if let safeTargetCurrencyStr = targetCurrencyStr
             {
                 self.targetCurrencyLabel.text = "\(safeTargetCurrencyStr)"
+                self.logicForConvertingCurrency()
             }
             else
             {

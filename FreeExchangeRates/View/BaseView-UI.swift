@@ -249,4 +249,20 @@ extension BaseViewController
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
+    
+    func logicForConvertingCurrency()
+    {
+        if let safeText = self.baseAmountTF.text,
+           safeText.count > 0
+        {
+            self.convertedResultLabel.isHidden = false
+            self.baseViewModel.convert(amount: safeText)
+        }
+        else
+        {
+            self.convertedResultLabel.isHidden = true
+        }
+    }
 }
