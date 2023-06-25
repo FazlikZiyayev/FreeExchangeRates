@@ -19,6 +19,7 @@
 		F433C47E2A45B295003874D9 /* ExchangeRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */; };
 		F433C4802A463324003874D9 /* BaseView-UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C47F2A463324003874D9 /* BaseView-UI.swift */; };
 		F433C4822A470C8A003874D9 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C4812A470C8A003874D9 /* UIColor-Extension.swift */; };
+		F433C4842A482700003874D9 /* SupportedSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F433C4832A482700003874D9 /* SupportedSymbols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModel.swift; sourceTree = "<group>"; };
 		F433C47F2A463324003874D9 /* BaseView-UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseView-UI.swift"; sourceTree = "<group>"; };
 		F433C4812A470C8A003874D9 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
+		F433C4832A482700003874D9 /* SupportedSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportedSymbols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				F433C47D2A45B295003874D9 /* ExchangeRateModel.swift */,
+				F433C4832A482700003874D9 /* SupportedSymbols.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			files = (
 				F433C4772A45ACB3003874D9 /* Observable.swift in Sources */,
 				F433C47C2A45B1B1003874D9 /* APICaller.swift in Sources */,
+				F433C4842A482700003874D9 /* SupportedSymbols.swift in Sources */,
 				F433C44D2A44EDE3003874D9 /* AppDelegate.swift in Sources */,
 				F433C47E2A45B295003874D9 /* ExchangeRateModel.swift in Sources */,
 				F433C4822A470C8A003874D9 /* UIColor-Extension.swift in Sources */,

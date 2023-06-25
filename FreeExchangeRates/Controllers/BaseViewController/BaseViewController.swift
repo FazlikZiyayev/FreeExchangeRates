@@ -27,6 +27,7 @@ class BaseViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        self.baseViewModel.setTargetCurrency(targetCurrency: "UZS")
         self.create_uiComponents()
         self.bind_elements()
     }
@@ -46,6 +47,7 @@ class BaseViewController: UIViewController
         super.viewDidAppear(animated)
         
         self.baseViewModel.getLatestRates()
+        self.baseViewModel.getSupportedSymbols()
     }
     
     
@@ -57,12 +59,19 @@ class BaseViewController: UIViewController
            safeText.count > 0
         {
             self.convertedResultLabel.isHidden = false
-            self.baseViewModel.convert(from: "EUR", to: "USD", amount: safeText)
+            self.baseViewModel.convert(amount: safeText)
         }
         else
         {
             self.convertedResultLabel.isHidden = true
         }
+    }
+    
+    
+    
+    @objc func selectTargetPressed()
+    {
+        
     }
 }
 
@@ -75,6 +84,9 @@ extension BaseViewController
     {
         self.bind_isLoadingLastestRatest()
         self.bind_exchangeData()
+        self.bind_supportedSymbols()
+        self.bind_baseCurrency()
+        self.bind_targetCurrency()
         self.bind_convertedResult()
     }
     
@@ -94,6 +106,49 @@ extension BaseViewController
             guard let self = self,
                   let _ = exchangeDate else {return}
             self.baseAmountTF.becomeFirstResponder()
+            
+        }
+    }
+    
+    
+    
+    func bind_supportedSymbols()
+    {
+        baseViewModel.supportedSybols.bind { [weak self] supportedSymbols in
+            guard let self = self,
+                  let _ = supportedSymbols else {return}
+            
+            self.targetAmountContainer.isUserInteractionEnabled = true
+        }
+    }
+    
+    
+    
+    func bind_baseCurrency()
+    {
+        baseViewModel.baseCurrency.bind { [weak self] baseCurrencyStr in
+            guard let self = self,
+                  let baseCurrencyStr = baseCurrencyStr else { return }
+            
+            self.baseCurrencyLabel.text = self.baseViewModel.countryFlag(countryCode: "DE") + " \(baseCurrencyStr)"
+        }
+    }
+    
+    
+    
+    func bind_targetCurrency()
+    {
+        baseViewModel.targetCurrency.bind { [weak self] targetCurrencyStr in
+            guard let self = self else { return }
+            
+            if let safeTargetCurrencyStr = targetCurrencyStr
+            {
+                self.targetCurrencyLabel.text = "\(safeTargetCurrencyStr)"
+            }
+            else
+            {
+                self.targetCurrencyLabel.text = "Select currency"
+            }
         }
     }
     

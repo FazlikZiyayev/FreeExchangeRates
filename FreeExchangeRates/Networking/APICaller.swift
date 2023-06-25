@@ -41,4 +41,31 @@ class APICaller
             }
         }.resume()
     }
+    
+    
+    
+    static func getSupportedSymbols(completionHandler: @escaping (Result<SupportedSymbols, NetworkError>) -> Void)
+    {
+        let url = NetworkConstant.shared.serverEndpoint +
+        "symbols?access_key=" +
+        NetworkConstant.shared.apiKey
+        
+        guard let url = URL(string: url) else {
+            completionHandler(.failure(.urlError))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if error == nil,
+               let safeData = data,
+               let resultData = try? JSONDecoder().decode(SupportedSymbols.self, from: safeData)
+            {
+                completionHandler(.success(resultData))
+            }
+            else
+            {
+                completionHandler(.failure(.couldNotParseData))
+            }
+        }.resume()
+    }
 }

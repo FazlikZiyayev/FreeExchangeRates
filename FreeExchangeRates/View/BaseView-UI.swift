@@ -104,7 +104,6 @@ extension BaseViewController
     func create_baseCurrencyLabel() -> UILabel
     {
         let label = UILabel()
-        label.text = self.countryFlag(countryCode: "DE") + " EUR"
         label.font = .boldSystemFont(ofSize: 20)
         self.baseAmountContainer.addSubview(label)
         label.snp.makeConstraints { make in
@@ -152,6 +151,7 @@ extension BaseViewController
     func create_targetAmountContainer() -> UIView
     {
         let container = UIView()
+        container.isUserInteractionEnabled = false
         container.layer.borderWidth = 2.0
         container.layer.borderColor = UIColor.black.cgColor
         container.layer.cornerRadius = 4
@@ -160,6 +160,14 @@ extension BaseViewController
             make.top.equalTo(self.targetAmountLabel.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(16)
             make.height.equalTo(50)
+        }
+        
+        
+        let clearBtn = UIButton()
+        clearBtn.addTarget(self, action: #selector(selectTargetPressed), for: .touchUpInside)
+        container.addSubview(clearBtn)
+        clearBtn.snp.makeConstraints { make in
+            make.height.width.equalToSuperview()
         }
         
         
@@ -180,18 +188,5 @@ extension BaseViewController
         
         
         return label
-    }
-    
-    
-    
-    func countryFlag(countryCode: String) -> String {
-        let base = 127397
-        var tempScalarView = String.UnicodeScalarView()
-        for i in countryCode.utf16 {
-            if let scalar = UnicodeScalar(base + Int(i)) {
-                tempScalarView.append(scalar)
-            }
-        }
-        return String(tempScalarView)
     }
 }
