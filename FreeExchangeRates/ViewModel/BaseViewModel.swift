@@ -47,6 +47,28 @@ class BaseViewModel
         self.targetCurrency.value = targetCurrency
     }
     
+    
+    
+    func getNumberOfSupportedSymbols() -> Int?
+    {
+        return self.supportedSymbols.value?.symbols.count
+    }
+    
+    
+    
+    func getSupportedSymbolKeyByIndex(index: Int) -> String?
+    {
+        if let safeSupportedSymbols = self.supportedSymbols.value?.symbols
+        {
+            let index = safeSupportedSymbols.index(safeSupportedSymbols.startIndex, offsetBy: index)
+            let value = safeSupportedSymbols.keys[index]
+            
+            return value
+        }
+        
+        return nil
+    }
+    
 
     
     func getLatestRates()

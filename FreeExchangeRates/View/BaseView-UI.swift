@@ -202,13 +202,12 @@ extension BaseViewController
         pickerView.delegate = self
         
         pickerView.selectRow(selectedRow, inComponent: 0, animated: false)
-        //pickerView.selectRow(selectedRowTextColor, inComponent: 1, animated: false)
         
         vc.view.addSubview(pickerView)
         pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
         pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
         
-        let alert = UIAlertController(title: "Select Background Colour", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Select Currency", message: "", preferredStyle: .actionSheet)
         
         alert.popoverPresentationController?.sourceView = self.selectTargetClearBtn
         alert.popoverPresentationController?.sourceRect =  self.selectTargetClearBtn.bounds
@@ -217,16 +216,9 @@ extension BaseViewController
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
         }))
         
-        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
-            self.selectedRow = pickerView.selectedRow(inComponent: 0)
-            //self.selectedRowTextColor = pickerView.selectedRow(inComponent: 1)
-            let selected = Array(self.backGroundColours)[self.selectedRow]
-            //let selectedTextColor = Array(self.backGroundColours)[self.selectedRowTextColor]
-            let colour = selected.value
-            let name = selected.key
-            self.view.backgroundColor = colour
-            //self.pickerViewButton.setTitle(name, for: .normal)
-            //self.pickerViewButton.setTitleColor(selectedTextColor.value, for: .normal)
+        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { [weak self] (UIAlertAction) in
+            let key = self?.baseViewModel.getSupportedSymbolKeyByIndex(index: pickerView.selectedRow(inComponent: 0))
+            self?.baseViewModel.setTargetCurrency(targetCurrency: key)
         }))
         
         self.present(alert, animated: true, completion: nil)

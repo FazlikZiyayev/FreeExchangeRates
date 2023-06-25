@@ -42,7 +42,6 @@ class BaseViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.baseViewModel.setTargetCurrency(targetCurrency: "UZS")
         self.create_uiComponents()
         self.bind_elements()
     }
@@ -69,7 +68,6 @@ class BaseViewController: UIViewController
     
     @objc func baseAmountTFChanged(_ tf: UITextField)
     {
-//        self.baseViewModel.convert(from: "EUR", to: "UZS", amount: tf.text ?? "")
         if let safeText = tf.text,
            safeText.count > 0
         {
@@ -199,8 +197,7 @@ extension BaseViewController: UIPickerViewDelegate, UIPickerViewDataSource
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
         {
             let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 30))
-//            label.text = "Array(backGroundColours)[row].key"
-            label.text = "Hello world"
+            label.text = self.baseViewModel.getSupportedSymbolKeyByIndex(index: row)
             label.sizeToFit()
             return label
         }
@@ -212,8 +209,7 @@ extension BaseViewController: UIPickerViewDelegate, UIPickerViewDataSource
         
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
         {
-//            backGroundColours.count
-            return self.baseViewModel.supportedSymbols.value?.symbols.count ?? 0
+            return self.baseViewModel.getNumberOfSupportedSymbols() ?? 0
         }
         
         func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat
