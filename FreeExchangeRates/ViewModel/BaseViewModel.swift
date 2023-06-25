@@ -13,7 +13,7 @@ class BaseViewModel
     var isLoadingSupportedSymbols: Observable<Bool> = Observable(false)
     
     var exchangeData: Observable<ExchangeRateModel> = Observable(nil)
-    var supportedSybols: Observable<SupportedSymbols> = Observable(nil)
+    var supportedSymbols: Observable<SupportedSymbols> = Observable(nil)
 
     var baseCurrency: Observable<String> = Observable("EUR")
     var targetCurrency: Observable<String> = Observable(nil)
@@ -89,7 +89,7 @@ class BaseViewModel
             switch result
             {
             case .success(let data):
-                self?.supportedSybols.value = data
+                self?.supportedSymbols.value = data
                 
             case .failure(let error):
                 print(error)

@@ -170,6 +170,8 @@ extension BaseViewController
             make.height.width.equalToSuperview()
         }
         
+        self.selectTargetClearBtn = clearBtn
+        
         
         return container
     }
@@ -188,5 +190,45 @@ extension BaseViewController
         
         
         return label
+    }
+    
+    
+    func openTargetPickerView()
+    {
+        let vc = UIViewController()
+        vc.preferredContentSize = CGSize(width: screenWidth, height: screenHeight)
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 0, width: screenWidth, height:screenHeight))
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        
+        pickerView.selectRow(selectedRow, inComponent: 0, animated: false)
+        //pickerView.selectRow(selectedRowTextColor, inComponent: 1, animated: false)
+        
+        vc.view.addSubview(pickerView)
+        pickerView.centerXAnchor.constraint(equalTo: vc.view.centerXAnchor).isActive = true
+        pickerView.centerYAnchor.constraint(equalTo: vc.view.centerYAnchor).isActive = true
+        
+        let alert = UIAlertController(title: "Select Background Colour", message: "", preferredStyle: .actionSheet)
+        
+        alert.popoverPresentationController?.sourceView = self.selectTargetClearBtn
+        alert.popoverPresentationController?.sourceRect =  self.selectTargetClearBtn.bounds
+        
+        alert.setValue(vc, forKey: "contentViewController")
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
+            self.selectedRow = pickerView.selectedRow(inComponent: 0)
+            //self.selectedRowTextColor = pickerView.selectedRow(inComponent: 1)
+            let selected = Array(self.backGroundColours)[self.selectedRow]
+            //let selectedTextColor = Array(self.backGroundColours)[self.selectedRowTextColor]
+            let colour = selected.value
+            let name = selected.key
+            self.view.backgroundColor = colour
+            //self.pickerViewButton.setTitle(name, for: .normal)
+            //self.pickerViewButton.setTitleColor(selectedTextColor.value, for: .normal)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }

@@ -12,6 +12,19 @@ class BaseViewController: UIViewController
 {
     let baseViewModel = BaseViewModel()
     
+    let screenWidth = UIScreen.main.bounds.width - 10
+    let screenHeight = (UIScreen.main.bounds.height / 100) * 30
+    var selectedRow = 0
+    var backGroundColours : KeyValuePairs =
+            [
+                "WHITE" : UIColor.white,
+                "GRAY" : UIColor.lightGray,
+                "BLUE" : UIColor.blue,
+                "YELLOW" : UIColor.yellow,
+                "RED" : UIColor.red,
+                "GREEN" : UIColor.green
+            ]
+    
     var baseAmountLabel = UILabel()
     var baseAmountContainer = UIView()
     var baseAmountTF = UITextField()
@@ -20,6 +33,8 @@ class BaseViewController: UIViewController
     var targetAmountLabel = UILabel()
     var targetAmountContainer = UIView()
     var targetCurrencyLabel = UILabel()
+    var selectTargetClearBtn = UIButton()
+    var targetPickerView = UIPickerView()
     
     var convertedResultLabel = UILabel()
     
@@ -71,7 +86,7 @@ class BaseViewController: UIViewController
     
     @objc func selectTargetPressed()
     {
-        
+        self.openTargetPickerView()
     }
 }
 
@@ -114,11 +129,12 @@ extension BaseViewController
     
     func bind_supportedSymbols()
     {
-        baseViewModel.supportedSybols.bind { [weak self] supportedSymbols in
+        baseViewModel.supportedSymbols.bind { [weak self] supportedSymbols in
             guard let self = self,
                   let _ = supportedSymbols else {return}
             
             self.targetAmountContainer.isUserInteractionEnabled = true
+            self.targetPickerView.reloadAllComponents()
         }
     }
     
@@ -174,4 +190,34 @@ extension BaseViewController: UITextFieldDelegate
     {
         return true
     }
+}
+
+
+
+extension BaseViewController: UIPickerViewDelegate, UIPickerViewDataSource
+{
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView
+        {
+            let label = UILabel(frame: CGRect(x: 0, y: 0, width: screenWidth, height: 30))
+//            label.text = "Array(backGroundColours)[row].key"
+            label.text = "Hello world"
+            label.sizeToFit()
+            return label
+        }
+        
+        func numberOfComponents(in pickerView: UIPickerView) -> Int
+        {
+            return 1
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+        {
+//            backGroundColours.count
+            return self.baseViewModel.supportedSymbols.value?.symbols.count ?? 0
+        }
+        
+        func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat
+        {
+            return 60
+        }
 }
