@@ -20,10 +20,13 @@ extension BaseViewController
         self.targetAmountLabel = self.create_targetAmounLabel()
         self.targetAmountContainer = self.create_targetAmountContainer()
         self.targetCurrencyLabel = self.create_targetCurrencyLabel()
+        self.create_targetOptionIcon()
         
         self.convertedResultLabel = self.create_label()
         
         self.submitBtn = self.create_submitBtn()
+        
+        self.modalView = self.create_modalView()
     }
     
     
@@ -196,6 +199,19 @@ extension BaseViewController
     }
     
     
+    func create_targetOptionIcon()
+    {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "optionIcon")
+        self.targetAmountContainer.addSubview(imageView)
+        imageView.snp.makeConstraints { make in
+            make.height.width.equalTo(24)
+            make.right.equalToSuperview().offset(-12)
+            make.centerY.equalToSuperview()
+        }
+    }
+    
+    
     func create_submitBtn() -> UIButton
     {
         let btn = UIButton()
@@ -218,6 +234,45 @@ extension BaseViewController
         return btn
     }
     
+
+    func create_modalView() -> UIView
+    {
+        let topContainer = UIView()
+        topContainer.isHidden = true
+        topContainer.backgroundColor = .white.withAlphaComponent(0.85)
+        self.view.addSubview(topContainer)
+        topContainer.snp.makeConstraints { make in
+            make.width.height.equalToSuperview()
+        }
+        
+        
+        let container = UIView()
+        container.tag = 111
+        container.backgroundColor = .white
+        container.layer.cornerRadius = 14
+        container.layer.borderWidth = 3.0
+        container.layer.borderColor = UIColor.gray.cgColor
+        topContainer.addSubview(container)
+        container.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.left.right.equalToSuperview().inset(20)
+            make.height.equalTo((UIScreen.main.bounds.height / 100) * 30)
+        }
+        
+        
+        let label = UILabel()
+        label.tag = 222
+        label.text = "Success ✅"
+        label.font = .boldSystemFont(ofSize: 25)
+        container.addSubview(label)
+        label.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+        
+        
+        return topContainer
+    }
+    
     
     func logicForConvertingCurrency()
     {
@@ -231,6 +286,12 @@ extension BaseViewController
         {
             self.convertedResultLabel.isHidden = true
         }
+    }
+    
+    
+    func checkForSubmitBtn()
+    {
+        
     }
     
     
@@ -266,12 +327,18 @@ extension BaseViewController
     }
     
     
-    func openModalView()
+    func showModalView(title: String)
     {
 //        let vc = ModalView(viewTitle: "")
 //        vc.modalPresentationStyle = .fullScreen
 //        self.present(vc,
 //                     animated: true)
         
+        self.modalView.isHidden = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0)
+        {
+            self.modalView.isHidden = true
+        }
     }
 }

@@ -30,6 +30,7 @@ class BaseViewController: UIViewController
     var convertedResultLabel = UILabel()
     
     var submitBtn = UIButton()
+    var modalView = UIView()
     
     
     override func viewDidLoad() {
@@ -55,6 +56,7 @@ class BaseViewController: UIViewController
         
         self.baseViewModel.getLatestRates()
         self.baseViewModel.getSupportedSymbols()
+        self.baseAmountTF.becomeFirstResponder()
     }
     
     
@@ -75,9 +77,7 @@ class BaseViewController: UIViewController
     
     @objc func submitBtnPressed()
     {
-        self.view.endEditing(true)
-        self.openModalView()
-//        self.baseViewModel.getLatestRates()
+        self.baseViewModel.getLatestRates()
     }
 }
 
@@ -94,6 +94,7 @@ extension BaseViewController
         self.bind_baseCurrency()
         self.bind_targetCurrency()
         self.bind_convertedResult()
+        self.bind_isSameLatestRates()
     }
     
     
@@ -103,10 +104,6 @@ extension BaseViewController
             guard let self = self,
                   let _ = exchangeDate else {return}
             
-            if !self.baseAmountTF.isFirstResponder
-            {
-                self.baseAmountTF.becomeFirstResponder()
-            }            
             self.logicForConvertingCurrency()
         }
     }
@@ -175,6 +172,19 @@ extension BaseViewController
             let safeConvertedResultAsDouble = Double(safeConvertedResult) else { return }
             
             self.convertedResultLabel.text = String(format: "%.2f", safeConvertedResultAsDouble)
+        }
+    }
+    
+    
+    func bind_isSameLatestRates()
+    {
+        self.baseViewModel.isSameLatestRates.bind { [weak self] bool in
+            guard let self = self,
+                  let safeBool = bool else { return }
+            
+            self.view.endEditing(true)
+            let title = safeBool ? "Success ✅" : "Fail ❌"
+            self.showModalView(title: title)
         }
     }
 }

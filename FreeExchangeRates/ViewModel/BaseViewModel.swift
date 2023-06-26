@@ -20,6 +20,8 @@ class BaseViewModel
     var targetCurrency: Observable<String> = Observable(nil)
     
     var convertedResult: Observable<String> = Observable(nil)
+    
+    var isSameLatestRates: Observable<Bool> = Observable(nil)
 
     
     func getBaseCurrency() -> String?
@@ -28,12 +30,10 @@ class BaseViewModel
     }
     
     
-    
     func setBaseCurrency(baseCurrency: String?)
     {
         self.baseCurrency.value = baseCurrency
     }
-    
     
     
     func getTargetCurrency() -> String?
@@ -42,12 +42,10 @@ class BaseViewModel
     }
     
     
-    
     func setTargetCurrency(targetCurrency: String?)
     {
         self.targetCurrency.value = targetCurrency
     }
-    
     
     
     func getNumberOfSupportedSymbols() -> Int?
@@ -61,20 +59,6 @@ class BaseViewModel
         return self.sortedSupportedSymbols.value?.count
     }
     
-    
-//    func getSupportedSymbolKeyByIndex(index: Int) -> String?
-//    {
-//        if let safeSupportedSymbols = self.supportedSymbols.value?.symbols
-//        {
-//            let index = safeSupportedSymbols.index(safeSupportedSymbols.startIndex, offsetBy: index)
-//            let value = safeSupportedSymbols.keys[index]
-//
-//            return value
-//        }
-//
-//        return nil
-//    }
-
     
     func getSortedSupportedSymbolKeyByIndex(index: Int) -> String?
     {
@@ -103,6 +87,15 @@ class BaseViewModel
             switch result
             {
             case .success(let data):
+                if let safeOldExchangeData = self?.exchangeData.value,
+                   let targetCurrency = self?.getTargetCurrency()
+                {
+                    if let safeOldSingleCurrency = safeOldExchangeData.rates[targetCurrency],
+                       let safeNewSingleCurrency = data.rates[targetCurrency]
+                    {
+                        self?.isSameLatestRates.value = safeOldSingleCurrency == safeNewSingleCurrency
+                    }
+                }
                 self?.exchangeData.value = data
                 
             case .failure(let error):
