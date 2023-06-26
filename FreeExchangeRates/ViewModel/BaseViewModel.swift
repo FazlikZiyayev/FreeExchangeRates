@@ -48,6 +48,12 @@ class BaseViewModel
     }
     
     
+    func getNumberOfComponents() -> Int
+    {
+        return 1
+    }
+    
+    
     func getNumberOfSupportedSymbols() -> Int?
     {
         return self.supportedSymbols.value?.symbols.count
@@ -72,6 +78,8 @@ class BaseViewModel
     }
     
     
+    // The free subscription does not allow change base currency
+    // By default it is EUR
     func getLatestRates()
     {
         if isLoadingLatestRates.value ?? true

@@ -30,6 +30,7 @@ class BaseViewController: UIViewController
     var convertedResultLabel = UILabel()
     
     var submitBtn = UIButton()
+    
     var modalView = UIView()
     
     
@@ -132,7 +133,6 @@ extension BaseViewController
     }
     
     
-    
     func bind_baseCurrency()
     {
         baseViewModel.baseCurrency.bind { [weak self] baseCurrencyStr in
@@ -142,7 +142,6 @@ extension BaseViewController
             self.baseCurrencyLabel.text = self.baseViewModel.countryFlag(countryCode: "DE") + " \(baseCurrencyStr)"
         }
     }
-    
     
     
     func bind_targetCurrency()
@@ -161,7 +160,6 @@ extension BaseViewController
             }
         }
     }
-    
     
     
     func bind_convertedResult()
@@ -213,7 +211,7 @@ extension BaseViewController: UIPickerViewDelegate, UIPickerViewDataSource
         
         func numberOfComponents(in pickerView: UIPickerView) -> Int
         {
-            return 1
+            return self.baseViewModel.getNumberOfComponents()
         }
         
         func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
