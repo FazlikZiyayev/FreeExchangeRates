@@ -75,7 +75,9 @@ class BaseViewController: UIViewController
     
     @objc func submitBtnPressed()
     {
-        
+        self.view.endEditing(true)
+        self.openModalView()
+//        self.baseViewModel.getLatestRates()
     }
 }
 
@@ -100,7 +102,12 @@ extension BaseViewController
         baseViewModel.exchangeData.bind { [weak self] exchangeDate in
             guard let self = self,
                   let _ = exchangeDate else {return}
-            self.baseAmountTF.becomeFirstResponder()
+            
+            if !self.baseAmountTF.isFirstResponder
+            {
+                self.baseAmountTF.becomeFirstResponder()
+            }            
+            self.logicForConvertingCurrency()
         }
     }
     

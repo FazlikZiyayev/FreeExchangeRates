@@ -219,6 +219,21 @@ extension BaseViewController
     }
     
     
+    func logicForConvertingCurrency()
+    {
+        if let safeText = self.baseAmountTF.text,
+           safeText.count > 0
+        {
+            self.convertedResultLabel.isHidden = false
+            self.baseViewModel.convert(amount: safeText)
+        }
+        else
+        {
+            self.convertedResultLabel.isHidden = true
+        }
+    }
+    
+    
     func openTargetPickerView()
     {
         let vc = UIViewController()
@@ -251,18 +266,12 @@ extension BaseViewController
     }
     
     
-    
-    func logicForConvertingCurrency()
+    func openModalView()
     {
-        if let safeText = self.baseAmountTF.text,
-           safeText.count > 0
-        {
-            self.convertedResultLabel.isHidden = false
-            self.baseViewModel.convert(amount: safeText)
-        }
-        else
-        {
-            self.convertedResultLabel.isHidden = true
-        }
+//        let vc = ModalView(viewTitle: "")
+//        vc.modalPresentationStyle = .fullScreen
+//        self.present(vc,
+//                     animated: true)
+        
     }
 }
