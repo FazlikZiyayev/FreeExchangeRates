@@ -21,7 +21,7 @@ class NetworkConstant
     {
         get {
             // YOUR API KEY
-            return "a7d759acd3a6b410e3789f066c02cf80"
+            return ""
         }
     }
     
